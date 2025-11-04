@@ -56,7 +56,7 @@ export default function Header({ scrollToSection }: HeaderProps) {
             <img
               src="/logo.png"
               alt="PP Logo"
-              className="h-10 w-10 object-contain"
+              className="logo-width logo-height logo-fit"
               data-testid="logo-image"
             />
           </motion.div>

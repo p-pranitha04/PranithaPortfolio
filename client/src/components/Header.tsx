@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import {
@@ -15,6 +18,7 @@ interface HeaderProps {
 
 export default function Header({ scrollToSection }: HeaderProps) {
   const prefersReducedMotion = useReducedMotion();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
     { label: "About", section: "about" },
@@ -23,6 +27,11 @@ export default function Header({ scrollToSection }: HeaderProps) {
     { label: "Skills", section: "skills" },
     { label: "Contact", section: "contact" },
   ];
+
+  const handleNavClick = (section: string) => {
+    scrollToSection(section);
+    setIsOpen(false);
+  };
 
   const variants = prefersReducedMotion
     ? getReducedMotionVariants(headerVariants)
@@ -41,7 +50,7 @@ export default function Header({ scrollToSection }: HeaderProps) {
       animate="visible"
       variants={variants}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 sm:px-6 py-4">
         <div className="flex items-center justify-between">
           <motion.div variants={itemVariants}>
             <img
@@ -58,7 +67,7 @@ export default function Header({ scrollToSection }: HeaderProps) {
             initial="hidden"
             animate="visible"
           >
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <motion.div key={item.section} variants={itemVariants}>
                 <Button
                   variant="ghost"
@@ -72,9 +81,40 @@ export default function Header({ scrollToSection }: HeaderProps) {
             ))}
           </motion.nav>
 
-          <motion.div variants={itemVariants}>
-            <ThemeToggle />
-          </motion.div>
+          <div className="flex items-center gap-2">
+            <motion.div variants={itemVariants}>
+              <ThemeToggle />
+            </motion.div>
+
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden"
+                  data-testid="button-menu-toggle"
+                  aria-label="Open navigation menu"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[280px] sm:w-[320px]">
+                <nav className="flex flex-col gap-4 mt-8">
+                  {navItems.map((item) => (
+                    <Button
+                      key={item.section}
+                      variant="ghost"
+                      onClick={() => handleNavClick(item.section)}
+                      data-testid={`button-mobile-nav-${item.section}`}
+                      className="justify-start text-lg hover-elevate transition-all duration-200"
+                    >
+                      {item.label}
+                    </Button>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </motion.header>

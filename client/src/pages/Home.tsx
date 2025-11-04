@@ -33,9 +33,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <Header scrollToSection={scrollToSection} />
-      <main>
+      <main className="w-full">
         <HeroSection scrollToSection={scrollToSection} />
         <AboutSection />
         <ExperienceSection />

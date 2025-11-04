@@ -33,7 +33,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background" style={{ overflowX: 'hidden', width: '100%' }}>
       <Header scrollToSection={scrollToSection} />
       <main className="w-full">
         <HeroSection scrollToSection={scrollToSection} />

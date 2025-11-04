@@ -78,21 +78,16 @@ export default function ProjectCard({
             </div>
           </div>
 
-          <div className="p-6 space-y-4">
-            <div className="flex flex-wrap gap-2">
-              {technologies.slice(0, 6).map((tech) => (
-                <Badge key={tech} variant="secondary" className="text-xs">
+          <div className="p-6 space-y-4 flex flex-col h-[calc(100%-12rem)]">
+            <div className="flex flex-wrap gap-2 overflow-y-auto flex-1 min-h-0">
+              {technologies.map((tech) => (
+                <Badge key={tech} variant="secondary" className="text-xs h-fit">
                   {tech}
                 </Badge>
               ))}
-              {technologies.length > 6 && (
-                <Badge variant="outline" className="text-xs">
-                  +{technologies.length - 6} more
-                </Badge>
-              )}
             </div>
 
-            <div className="flex items-center justify-center pt-4">
+            <div className="flex items-center justify-center pt-4 flex-shrink-0">
               <Button variant="ghost" size="sm">
                 <RotateCw className="w-4 h-4 mr-2" />
                 Hover to flip
@@ -120,7 +115,7 @@ export default function ProjectCard({
               <div>
                 <h4 className="font-semibold mb-2">Key Features</h4>
                 <ul className="space-y-1">
-                  {achievements.slice(0, 4).map((achievement, index) => (
+                  {achievements.map((achievement, index) => (
                     <li
                       key={index}
                       className="flex items-start gap-2 text-sm text-muted-foreground"
@@ -129,28 +124,17 @@ export default function ProjectCard({
                       <span>{achievement}</span>
                     </li>
                   ))}
-                  {achievements.length > 4 && (
-                    <li className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span>+{achievements.length - 4} more features...</span>
-                    </li>
-                  )}
                 </ul>
               </div>
 
               <div>
                 <h4 className="font-semibold mb-2">Tech Stack</h4>
                 <div className="flex flex-wrap gap-1">
-                  {technologies.slice(0, 8).map((tech) => (
+                  {technologies.map((tech) => (
                     <Badge key={tech} variant="secondary" className="text-xs">
                       {tech}
                     </Badge>
                   ))}
-                  {technologies.length > 8 && (
-                    <Badge variant="outline" className="text-xs">
-                      +{technologies.length - 8} more
-                    </Badge>
-                  )}
                 </div>
               </div>
             </div>

@@ -34,13 +34,35 @@ export default function ProjectCard({
   githubUrl
 }: ProjectCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect if device is mobile
+  useState(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  });
 
   const handleMouseEnter = () => {
-    setIsFlipped(true);
+    if (!isMobile) {
+      setIsFlipped(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsFlipped(false);
+    if (!isMobile) {
+      setIsFlipped(false);
+    }
+  };
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Only handle click on mobile and if not clicking a button
+    if (isMobile && !(e.target as HTMLElement).closest('button')) {
+      setIsFlipped(!isFlipped);
+    }
   };
 
   const handleLiveClick = () => {
@@ -64,6 +86,7 @@ export default function ProjectCard({
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleCardClick}
     >
       <div
         className={`relative w-full h-full transition-transform duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
@@ -73,7 +96,7 @@ export default function ProjectCard({
         }}
       >
         {/* Front Side */}
-        <Card className="absolute inset-0 w-full h-full backface-hidden cursor-pointer overflow-hidden shadow-lg"
+        <Card className={`absolute inset-0 w-full h-full backface-hidden overflow-hidden shadow-lg ${isMobile ? 'cursor-pointer' : ''}`}
               data-testid={`card-project-front-${title.toLowerCase().replace(/\s+/g, '-')}`}>
           <div className="relative h-48 overflow-hidden">
             <img
@@ -98,9 +121,9 @@ export default function ProjectCard({
             </div>
 
             <div className="flex items-center justify-center pt-4 flex-shrink-0">
-              <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm" className="pointer-events-none">
                 <RotateCw className="w-4 h-4 mr-2" />
-                Hover to flip
+                {isMobile ? 'Tap to flip' : 'Hover to flip'}
               </Button>
             </div>
           </div>

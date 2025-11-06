@@ -1,15 +1,14 @@
-
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Building, Calendar, MapPin } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useInView } from "@/lib/animations";
-import { 
+import {
   staggerContainer,
   fadeUpVariants,
   scaleInVariants,
-  getReducedMotionVariants 
+  getReducedMotionVariants,
 } from "@/lib/animations";
 
 export default function ExperienceSection() {
@@ -19,8 +18,8 @@ export default function ExperienceSection() {
   const experiences = [
     {
       title: "Software Developer",
-      company: "RTNextGenAI",
-      period: "May 2024 – Present",
+      company: "SiAnth Inc",
+      period: "May 2024 – May2025",
       location: "Remote",
       type: "Full-time",
       description:
@@ -95,30 +94,34 @@ export default function ExperienceSection() {
   ];
 
   // Get variants based on motion preferences
-  const headerVariants = prefersReducedMotion ? getReducedMotionVariants(staggerContainer) : staggerContainer;
-  const cardVariants = prefersReducedMotion ? getReducedMotionVariants(scaleInVariants) : scaleInVariants;
+  const headerVariants = prefersReducedMotion
+    ? getReducedMotionVariants(staggerContainer)
+    : staggerContainer;
+  const cardVariants = prefersReducedMotion
+    ? getReducedMotionVariants(scaleInVariants)
+    : scaleInVariants;
 
   return (
-    <motion.section 
-      id="experience" 
+    <motion.section
+      id="experience"
       className="py-24 bg-background relative"
       ref={ref}
     >
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={headerVariants}
           >
-            <motion.h2 
+            <motion.h2
               className="text-4xl font-bold mb-4"
               variants={fadeUpVariants}
             >
               Work Experience
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-muted-foreground"
               variants={fadeUpVariants}
             >
@@ -130,7 +133,7 @@ export default function ExperienceSection() {
             {/* Timeline line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border hidden md:block"></div>
 
-            <motion.div 
+            <motion.div
               className="space-y-8"
               variants={staggerContainer}
               initial="hidden"
@@ -144,14 +147,18 @@ export default function ExperienceSection() {
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-6 w-4 h-4 bg-primary rounded-full border-4 border-background z-10 hidden md:block"></div>
-                  
+
                   {/* Content */}
                   <div className="flex-1 md:ml-16">
                     <motion.div
-                      whileHover={prefersReducedMotion ? {} : { 
-                        y: -4,
-                        transition: { duration: 0.3 }
-                      }}
+                      whileHover={
+                        prefersReducedMotion
+                          ? {}
+                          : {
+                              y: -4,
+                              transition: { duration: 0.3 },
+                            }
+                      }
                     >
                       <Card
                         className="p-6 hover:shadow-lg transition-all duration-300"
@@ -161,13 +168,19 @@ export default function ExperienceSection() {
                           {/* Header */}
                           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                             <div>
-                              <h3 className="text-xl font-bold mb-1">{exp.title}</h3>
+                              <h3 className="text-xl font-bold mb-1">
+                                {exp.title}
+                              </h3>
                               <div className="flex items-center gap-2 text-muted-foreground mb-2">
                                 <Building className="w-4 h-4" />
-                                <span className="font-medium">{exp.company}</span>
+                                <span className="font-medium">
+                                  {exp.company}
+                                </span>
                               </div>
                             </div>
-                            <Badge variant="outline" className="self-start">{exp.type}</Badge>
+                            <Badge variant="outline" className="self-start">
+                              {exp.type}
+                            </Badge>
                           </div>
 
                           <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-muted-foreground">
@@ -188,7 +201,9 @@ export default function ExperienceSection() {
 
                           {/* Achievements */}
                           <div className="space-y-2">
-                            <h4 className="font-semibold text-sm">Key Achievements</h4>
+                            <h4 className="font-semibold text-sm">
+                              Key Achievements
+                            </h4>
                             <ul className="space-y-1">
                               {exp.achievements.map((achievement, achIndex) => (
                                 <li
@@ -204,7 +219,9 @@ export default function ExperienceSection() {
 
                           {/* Technologies */}
                           <div className="space-y-2">
-                            <h4 className="font-semibold text-sm">Technologies Used</h4>
+                            <h4 className="font-semibold text-sm">
+                              Technologies Used
+                            </h4>
                             <div className="flex flex-wrap gap-2">
                               {exp.technologies.map((tech) => (
                                 <Badge

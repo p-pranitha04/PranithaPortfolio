@@ -17,9 +17,40 @@ export default function ExperienceSection() {
 
   const experiences = [
     {
+      title: "Cloud AI Engineer",
+      company: "RTNextGenAI",
+      period: "May 2025 – Present",
+      location: "Remote",
+      type: "Full-time",
+      description:
+        "AI-Driven Cloud Infrastructure and Conversational AI Integration",
+      achievements: [
+        "Engineered REST APIs for AI-driven automation workflows and real-time data exchange",
+        "Built chatbot middleware services enabling conversational AI integrations across multiple channels",
+        "Implemented OAuth2.0 and JWT authentication for secure API access control",
+        "Developed serverless functions (AWS Lambda/Cloud Functions) for real-time data processing",
+        "Created data pipelines connecting chatbot analytics with BigQuery and DynamoDB",
+        "Managed CI/CD pipelines for microservices using GitHub Actions and Docker",
+        "Integrated payment gateways for subscription-based AI service monetization",
+        "Connected external AI APIs (OpenAI, Vertex AI) to enterprise systems",
+      ],
+      technologies: [
+        "AWS Lambda",
+        "Cloud Functions",
+        "OAuth2.0",
+        "JWT",
+        "BigQuery",
+        "DynamoDB",
+        "OpenAI",
+        "Vertex AI",
+        "Docker",
+        "GitHub Actions",
+      ],
+    },
+    {
       title: "Software Developer",
       company: "SiAnth Inc",
-      period: "May 2024 – May2025",
+      period: "May 2024 – May 2025",
       location: "Remote",
       type: "Full-time",
       description:

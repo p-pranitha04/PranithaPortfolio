@@ -2,12 +2,13 @@
   # Directory to change to before starting a build
   base = "."
   # Directory that contains the deploy-ready HTML files and assets
-  publish = "client/dist"
+  publish = "dist/public"
   # Build command for the frontend
-  command = "npm run build:frontend"
+  command = "npm run build"
 
 # Redirect all routes to index.html for React Router
 [[redirects]]
+  from = "/*"
   from = "/*"
   to = "/index.html"
   status = 200

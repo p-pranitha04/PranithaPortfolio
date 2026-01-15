@@ -45,16 +45,17 @@ export default function ExperienceSection() {
     {
       title: "Software Developer",
       company: "SiAnth Inc",
-      period: "May 2024 – May 2025",
+      period: "May 2024 – Apr 2025",
       location: "Remote",
       type: "Full-time",
       description:
         "Scalable Cloud-Native API Infrastructure with Cursor AI on GCP",
       achievements: [
-        "Designed and deployed API services on GCP using RESTful and GraphQL standards",
-        "Built backend services with Python/Flask and PostgreSQL for high query performance",
-        "Integrated APIs with GraphQL (Apollo Server) to reduce latency and streamline processing",
-        "Implemented JWT-based authentication and automated data ingestion pipelines",
+        "Built scalable backend services with modular, cloud-ready architecture",
+        "Developed secure APIs with authentication and role-based access control",
+        "Applied user-centered UI/UX principles with accessible, responsive designs",
+        "Integrated cloud services and secure payment workflows",
+        "Documented, tested, and deployed applications to cloud platforms",
       ],
       technologies: [
         "Python",
@@ -68,15 +69,15 @@ export default function ExperienceSection() {
     {
       title: "Senior Software Developer",
       company: "Multiplier AI Solutions",
-      period: "Oct 2020 – Dec 2022",
+      period: "July 2021 – Dec 2022",
       location: "Remote",
       type: "Full-time",
       description: "Web Development for Healthcare and Pharma Clients",
       achievements: [
-        "Led development of 100+ web pages, delivering 30% performance improvement",
-        "Built responsive UI components with React Hooks and efficient state management",
-        "Integrated RESTful APIs across multi-cloud environments for scalable applications",
-        "Enhanced SEO performance by 25% and increased user engagement by 40%",
+        "Collaborated with cross-functional teams to design, optimize, and maintain 100+ responsive web pages, improving accessibility and user experience",
+        "Led end-to-end web development, building scalable applications, custom themes, and integrations that improved performance and reduced load times",
+
+        "Automated notifications, integrated payment systems, enhanced SEO using analytics, and managed deployments across multiple domains.",
       ],
       technologies: [
         "React.js",
@@ -87,21 +88,21 @@ export default function ExperienceSection() {
         "Bootstrap",
       ],
     },
-    {
-      title: "Software Developer Executive",
-      company: "Multiplier AI Solutions",
-      period: "Oct 2020 – Dec 2022",
-      location: "Remote",
-      type: "Full-time",
-      description: "Modern JavaScript Development and Dashboard Solutions",
-      achievements: [
-        "Developed clean, modular codebases using ES6+, reducing technical debt",
-        "Built dynamic, real-time dashboards with React.js and backend integrations",
-        "Engineered custom chatbots using TypeScript for client-specific needs",
-        "Enhanced website performance by 40% decrease in page load times",
-      ],
-      technologies: ["TypeScript", "React.js", "ES6+", "Vtiger CRM"],
-    },
+    // {
+    //   title: "Software Developer Executive",
+    //   company: "Multiplier AI Solutions",
+    //   period: "Oct 2020 – Dec 2022",
+    //   location: "Remote",
+    //   type: "Full-time",
+    //   description: "Modern JavaScript Development and Dashboard Solutions",
+    //   achievements: [
+    //     "Developed clean, modular codebases using ES6+, reducing technical debt",
+    //     "Built dynamic, real-time dashboards with React.js and backend integrations",
+    //     "Engineered custom chatbots using TypeScript for client-specific needs",
+    //     "Enhanced website performance by 40% decrease in page load times",
+    //   ],
+    //   technologies: ["TypeScript", "React.js", "ES6+", "Vtiger CRM"],
+    // },
     {
       title: "Software Developer Intern",
       company: "Inmovidu Technologies",

@@ -16,11 +16,11 @@ import {
 import { useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { useInView } from "@/lib/animations";
-import { 
-  staggerContainer, 
+import {
+  staggerContainer,
   fadeUpVariants,
   scaleInVariants,
-  getReducedMotionVariants 
+  getReducedMotionVariants,
 } from "@/lib/animations";
 
 export default function ContactSection() {
@@ -44,14 +44,14 @@ export default function ContactSection() {
       label: "LinkedIn",
       value: "Connect with me",
       isCopy: false,
-      href: "https://www.linkedin.com/in/pranitha-p-212849198/",
+      href: "https://www.linkedin.com/in/p-pranitha/",
     },
     {
       icon: Github,
       label: "GitHub",
-      value: "Pothugunt1a",
+      value: "p-pranitha",
       isCopy: false,
-      href: "https://github.com/Pothugunt1a",
+      href: "https://github.com/p-pranitha04",
     },
   ];
 
@@ -85,12 +85,12 @@ export default function ContactSection() {
     try {
       await navigator.clipboard.writeText(email);
       setEmailCopied(true);
-      setClickedButtons(prev => new Set(prev).add('copy-email'));
+      setClickedButtons((prev) => new Set(prev).add("copy-email"));
       setTimeout(() => {
         setEmailCopied(false);
-        setClickedButtons(prev => {
+        setClickedButtons((prev) => {
           const newSet = new Set(prev);
-          newSet.delete('copy-email');
+          newSet.delete("copy-email");
           return newSet;
         });
       }, 2000);
@@ -102,9 +102,9 @@ export default function ContactSection() {
 
   const handleContactClick = (href: string | null, label: string) => {
     if (href) {
-      setClickedButtons(prev => new Set(prev).add(label));
+      setClickedButtons((prev) => new Set(prev).add(label));
       setTimeout(() => {
-        setClickedButtons(prev => {
+        setClickedButtons((prev) => {
           const newSet = new Set(prev);
           newSet.delete(label);
           return newSet;
@@ -116,18 +116,18 @@ export default function ContactSection() {
   };
 
   const handleDownloadResume = () => {
-    setClickedButtons(prev => new Set(prev).add('download-resume'));
+    setClickedButtons((prev) => new Set(prev).add("download-resume"));
     setTimeout(() => {
-      setClickedButtons(prev => {
+      setClickedButtons((prev) => {
         const newSet = new Set(prev);
-        newSet.delete('download-resume');
+        newSet.delete("download-resume");
         return newSet;
       });
     }, 300);
-    
-    const link = document.createElement('a');
-    link.href = '/PranithaP.pdf';
-    link.download = 'Pranitha_Pothuguntla_Resume.pdf';
+
+    const link = document.createElement("a");
+    link.href = "/PranithaP.pdf";
+    link.download = "Pranitha_Pothuguntla_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -181,33 +181,39 @@ export default function ContactSection() {
   };
 
   // Get variants based on motion preferences
-  const headerVariants = prefersReducedMotion ? getReducedMotionVariants(staggerContainer) : staggerContainer;
-  const leftCardVariants = prefersReducedMotion ? getReducedMotionVariants(leftSlideVariants) : leftSlideVariants;
-  const rightCardVariants = prefersReducedMotion ? getReducedMotionVariants(rightSlideVariants) : rightSlideVariants;
-  const contactItemVariants = prefersReducedMotion ? getReducedMotionVariants(fadeUpVariants) : fadeUpVariants;
-  const skillItemVariants = prefersReducedMotion ? getReducedMotionVariants(scaleInVariants) : scaleInVariants;
+  const headerVariants = prefersReducedMotion
+    ? getReducedMotionVariants(staggerContainer)
+    : staggerContainer;
+  const leftCardVariants = prefersReducedMotion
+    ? getReducedMotionVariants(leftSlideVariants)
+    : leftSlideVariants;
+  const rightCardVariants = prefersReducedMotion
+    ? getReducedMotionVariants(rightSlideVariants)
+    : rightSlideVariants;
+  const contactItemVariants = prefersReducedMotion
+    ? getReducedMotionVariants(fadeUpVariants)
+    : fadeUpVariants;
+  const skillItemVariants = prefersReducedMotion
+    ? getReducedMotionVariants(scaleInVariants)
+    : scaleInVariants;
 
   return (
-    <motion.section 
-      id="contact" 
-      className="py-16 relative"
-      ref={ref}
-    >
+    <motion.section id="contact" className="py-16 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.div 
+          <motion.div
             className="text-center mb-10"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={headerVariants}
           >
-            <motion.h2 
+            <motion.h2
               className="text-4xl font-bold mb-3"
               variants={fadeUpVariants}
             >
               Get In Touch
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-xl text-muted-foreground"
               variants={fadeUpVariants}
             >
@@ -224,10 +230,14 @@ export default function ContactSection() {
               variants={leftCardVariants}
             >
               <Card className="p-6 space-y-4 hover-elevate border-2 border-primary/10 h-full">
-                <motion.div 
+                <motion.div
                   className="text-center mb-4"
                   initial={{ scale: 0.8, opacity: 0 }}
-                  animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+                  animate={
+                    isInView
+                      ? { scale: 1, opacity: 1 }
+                      : { scale: 0.8, opacity: 0 }
+                  }
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
                   <div className="w-20 h-20 mx-auto mb-3 flex items-center justify-center">
@@ -236,33 +246,39 @@ export default function ContactSection() {
                       alt="Handshake animation"
                       className="w-full h-full object-contain"
                       onError={(e) => {
-                        console.log('Failed to load handshake gif');
-                        e.currentTarget.style.display = 'none';
+                        console.log("Failed to load handshake gif");
+                        e.currentTarget.style.display = "none";
                       }}
                     />
                   </div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="space-y-3"
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   variants={contactStaggerVariants}
                 >
                   {contactInfo.map((contact, index) => (
-                    <motion.div 
-                      key={index} 
+                    <motion.div
+                      key={index}
                       className="group"
                       variants={contactItemVariants}
                     >
                       {contact.isCopy ? (
                         <motion.div
-                          whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                          whileHover={
+                            prefersReducedMotion ? {} : { scale: 1.02 }
+                          }
                           whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-                          animate={clickedButtons.has('copy-email') ? {
-                            scale: [1, 1.05, 1],
-                            transition: { duration: 0.3 }
-                          } : {}}
+                          animate={
+                            clickedButtons.has("copy-email")
+                              ? {
+                                  scale: [1, 1.05, 1],
+                                  transition: { duration: 0.3 },
+                                }
+                              : {}
+                          }
                         >
                           <Button
                             variant="outline"
@@ -270,12 +286,20 @@ export default function ContactSection() {
                             onClick={handleCopyEmail}
                             data-testid="button-copy-email"
                           >
-                            <motion.div 
+                            <motion.div
                               className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-blue-600/10 rounded-xl flex items-center justify-center"
-                              animate={emailCopied ? {
-                                scale: [1, 1.2, 1],
-                                backgroundColor: ["rgba(59, 130, 246, 0.2)", "rgba(34, 197, 94, 0.3)", "rgba(59, 130, 246, 0.2)"],
-                              } : {}}
+                              animate={
+                                emailCopied
+                                  ? {
+                                      scale: [1, 1.2, 1],
+                                      backgroundColor: [
+                                        "rgba(59, 130, 246, 0.2)",
+                                        "rgba(34, 197, 94, 0.3)",
+                                        "rgba(59, 130, 246, 0.2)",
+                                      ],
+                                    }
+                                  : {}
+                              }
                               transition={{ duration: 0.5 }}
                             >
                               <AnimatePresence mode="wait">
@@ -312,7 +336,7 @@ export default function ContactSection() {
                             </div>
                             <AnimatePresence>
                               {emailCopied && (
-                                <motion.span 
+                                <motion.span
                                   className="text-sm text-green-600 font-medium"
                                   initial={{ opacity: 0, x: 10 }}
                                   animate={{ opacity: 1, x: 0 }}
@@ -327,12 +351,18 @@ export default function ContactSection() {
                         </motion.div>
                       ) : (
                         <motion.div
-                          whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+                          whileHover={
+                            prefersReducedMotion ? {} : { scale: 1.02 }
+                          }
                           whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
-                          animate={clickedButtons.has(contact.label) ? {
-                            scale: [1, 1.05, 1],
-                            transition: { duration: 0.3 }
-                          } : {}}
+                          animate={
+                            clickedButtons.has(contact.label)
+                              ? {
+                                  scale: [1, 1.05, 1],
+                                  transition: { duration: 0.3 },
+                                }
+                              : {}
+                          }
                         >
                           <Button
                             variant="outline"
@@ -348,10 +378,14 @@ export default function ContactSection() {
                                   ? "bg-gradient-to-r from-blue-600/20 to-blue-700/10"
                                   : "bg-gradient-to-r from-gray-800/20 to-gray-900/10"
                               }`}
-                              whileHover={prefersReducedMotion ? {} : {
-                                rotate: [0, -10, 10, 0],
-                                transition: { duration: 0.4 }
-                              }}
+                              whileHover={
+                                prefersReducedMotion
+                                  ? {}
+                                  : {
+                                      rotate: [0, -10, 10, 0],
+                                      transition: { duration: 0.4 },
+                                    }
+                              }
                             >
                               <contact.icon
                                 className={`w-5 h-5 ${
@@ -370,9 +404,13 @@ export default function ContactSection() {
                               </p>
                             </div>
                             <motion.div
-                              animate={prefersReducedMotion ? {} : {
-                                x: [0, 3, 0],
-                              }}
+                              animate={
+                                prefersReducedMotion
+                                  ? {}
+                                  : {
+                                      x: [0, 3, 0],
+                                    }
+                              }
                               transition={{
                                 duration: 1,
                                 repeat: Infinity,
@@ -397,21 +435,23 @@ export default function ContactSection() {
               variants={rightCardVariants}
             >
               <Card className="p-6 space-y-4 hover-elevate border-2 border-primary/10 h-full">
-                <motion.div 
+                <motion.div
                   className="text-center mb-4"
                   initial={{ y: 20, opacity: 0 }}
-                  animate={isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                  animate={
+                    isInView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }
+                  }
                   transition={{ delay: 0.4, duration: 0.5 }}
                 >
                   <h3 className="text-xl font-bold">Let's Work Together</h3>
                   <p className="text-muted-foreground mt-1">
                     I'm passionate about building scalable applications and
-                    solving complex problems through code. Whether you're looking
-                    for:
+                    solving complex problems through code. Whether you're
+                    looking for:
                   </p>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="space-y-2"
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
@@ -422,19 +462,27 @@ export default function ContactSection() {
                       key={index}
                       className="group p-2 rounded-lg hover:bg-muted/50 transition-all duration-200"
                       variants={skillItemVariants}
-                      whileHover={prefersReducedMotion ? {} : {
-                        x: 8,
-                        transition: { duration: 0.2 }
-                      }}
+                      whileHover={
+                        prefersReducedMotion
+                          ? {}
+                          : {
+                              x: 8,
+                              transition: { duration: 0.2 },
+                            }
+                      }
                     >
                       <div className="flex items-start gap-3">
-                        <motion.div 
+                        <motion.div
                           className="w-8 h-8 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg flex items-center justify-center flex-shrink-0"
-                          whileHover={prefersReducedMotion ? {} : {
-                            scale: 1.1,
-                            rotate: [0, -5, 5, 0],
-                            transition: { duration: 0.4 }
-                          }}
+                          whileHover={
+                            prefersReducedMotion
+                              ? {}
+                              : {
+                                  scale: 1.1,
+                                  rotate: [0, -5, 5, 0],
+                                  transition: { duration: 0.4 },
+                                }
+                          }
                         >
                           <skill.icon className="w-4 h-4 text-primary" />
                         </motion.div>
@@ -450,8 +498,8 @@ export default function ContactSection() {
                     </motion.div>
                   ))}
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="pt-2 border-t border-border/50"
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : { opacity: 0 }}
@@ -466,7 +514,7 @@ export default function ContactSection() {
             </motion.div>
           </div>
 
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ y: 50, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
@@ -476,19 +524,25 @@ export default function ContactSection() {
               <motion.div
                 whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
                 whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
-                animate={clickedButtons.has('send-email') ? {
-                  scale: [1, 1.1, 1],
-                  transition: { duration: 0.3 }
-                } : {}}
+                animate={
+                  clickedButtons.has("send-email")
+                    ? {
+                        scale: [1, 1.1, 1],
+                        transition: { duration: 0.3 },
+                      }
+                    : {}
+                }
               >
                 <Button
                   size="lg"
                   onClick={() => {
-                    setClickedButtons(prev => new Set(prev).add('send-email'));
+                    setClickedButtons((prev) =>
+                      new Set(prev).add("send-email"),
+                    );
                     setTimeout(() => {
-                      setClickedButtons(prev => {
+                      setClickedButtons((prev) => {
                         const newSet = new Set(prev);
-                        newSet.delete('send-email');
+                        newSet.delete("send-email");
                         return newSet;
                       });
                     }, 300);
@@ -498,9 +552,13 @@ export default function ContactSection() {
                   className="hover-elevate bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
                 >
                   <motion.div
-                    animate={prefersReducedMotion ? {} : {
-                      rotate: [0, -10, 0],
-                    }}
+                    animate={
+                      prefersReducedMotion
+                        ? {}
+                        : {
+                            rotate: [0, -10, 0],
+                          }
+                    }
                     transition={{
                       duration: 2,
                       repeat: Infinity,
@@ -512,14 +570,18 @@ export default function ContactSection() {
                   Send me an email
                 </Button>
               </motion.div>
-              
+
               <motion.div
                 whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
                 whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
-                animate={clickedButtons.has('download-resume') ? {
-                  scale: [1, 1.1, 1],
-                  transition: { duration: 0.3 }
-                } : {}}
+                animate={
+                  clickedButtons.has("download-resume")
+                    ? {
+                        scale: [1, 1.1, 1],
+                        transition: { duration: 0.3 },
+                      }
+                    : {}
+                }
               >
                 <Button
                   size="lg"

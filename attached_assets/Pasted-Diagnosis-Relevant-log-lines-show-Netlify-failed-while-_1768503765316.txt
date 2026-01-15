@@ -1,0 +1,34 @@
+Diagnosis
+
+Relevant log lines show Netlify failed while parsing your config file: line 7 and line 8. The error is "Failed to parse configuration" when resolving /opt/build/repo/netlify.toml, so Netlify cannot parse your netlify.toml (the message is truncated to "Could n..." but it indicates a TOML parse error). See the log excerpt: lines 7–9.
+Error type: configuration parse error (invalid/malformed netlify.toml or an unreadable/partially committed file).
+Most likely causes: netlify.toml contains invalid TOML syntax (JS-style object/commas, missing brackets, stray characters), file was not fully committed, or has an encoding/BOM issue that breaks parsing.
+Solution
+
+Confirm the file is present and committed
+
+Verify netlify.toml exists in your repo root and was pushed. Check: https://github.com/p-pranitha04/PranithaPortfolio/blob/main/netlify.toml
+If the file is missing or you didn’t intend to use one, either remove it from the repo or add a valid netlify.toml (see steps below).
+Inspect and fix TOML syntax
+
+Open netlify.toml and look for common TOML mistakes: trailing commas, JS-style comments (//), missing closing brackets, or keys written like JS objects.
+Remove any Byte Order Mark (BOM) or non-UTF8 characters. Convert file to UTF-8 without BOM (e.g., run dos2unix or re-save from your editor as UTF-8).
+Validate the file locally
+
+Quick Python check:
+python -c "import toml,sys; toml.loads(open('netlify.toml', 'r', encoding='utf-8').read()); print('OK')"
+Or use an online TOML validator to spot syntax errors.
+Use a minimal valid netlify.toml as a starting point
+Replace your netlify.toml contents with a minimal valid config and adapt publish/command to your project (check package.json for your build output):
+# netlify.toml
+[build]
+  command = "npm run build"
+  publish = "build"
+If your project outputs to a different folder (e.g., "dist"), set publish accordingly. Check your package.json here: https://github.com/p-pranitha04/PranithaPortfolio/blob/main/package.json
+Commit and push
+
+Commit the fixed netlify.toml, push to main, and trigger a redeploy on Netlify.
+Temporary workaround
+
+If you need the site to build immediately and don’t require repo-stored config, remove netlify.toml from the repo and configure build & publish settings in the Netlify UI. Once builds succeed, you can add a corrected netlify.toml back.
+After these steps the parsing error should be resolved and Netlify will proceed to the build stage.

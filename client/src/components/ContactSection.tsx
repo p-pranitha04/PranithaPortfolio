@@ -37,7 +37,7 @@ export default function ContactSection() {
       label: "Copy Email",
       value: email,
       isCopy: true,
-      href: null,
+      href: `mailto:${email}`,
     },
     {
       icon: Linkedin,
@@ -126,8 +126,8 @@ export default function ContactSection() {
     }, 300);
 
     const link = document.createElement("a");
-    link.href = "/PranithaP.pdf";
-    link.download = "Pranitha_Pothuguntla_Resume.pdf";
+    link.href = "/client/public/Pranitha_P.pdf";
+    link.download = "Pranitha_P.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -546,7 +546,7 @@ export default function ContactSection() {
                         return newSet;
                       });
                     }, 300);
-                    window.open("mailto:p.pranitha0015@gmail.com", "_blank");
+                    window.open(`mailto:${email}`, "_blank");
                   }}
                   data-testid="button-contact-primary"
                   className="hover-elevate bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"

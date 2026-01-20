@@ -126,7 +126,7 @@ export default function ContactSection() {
     }, 300);
 
     const link = document.createElement("a");
-    link.href = "/client/public/Pranitha_P.pdf";
+    link.href = "/Pranitha_P.pdf";
     link.download = "Pranitha_P.pdf";
     document.body.appendChild(link);
     link.click();
